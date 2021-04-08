@@ -1,0 +1,7 @@
+{
+  "name": "OrderSignalR",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
