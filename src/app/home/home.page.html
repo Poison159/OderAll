@@ -1,59 +1,46 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="light"> 
     <ion-title>
-      Blank
+      Order
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Order</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
+<ion-content>
     <ion-grid>
-      <ion-row>
+      
+      <ion-row *ngFor="let meal of Displaymeals">
         <ion-col>
           <ion-item>
             <ion-card color="light">
               <ion-card-title>
-                <ion-img [src]="meal.ImgPath"></ion-img>
+                <ion-img [src]="meal.imgPath"></ion-img>
               </ion-card-title>
               <ion-card-subtitle>
-                <ion-text>{{meal.Name}}</ion-text>
+                <ion-text>{{meal.name}}</ion-text>
               </ion-card-subtitle>
               <ion-card-content>
                 <ion-toolbar color="light">
-                  <ion-text slot="start" color="dark">R{{meal.Price}}</ion-text>
-                  <ion-text slot="end" color="dark">{{meal.Discription}}</ion-text>
+                  <ion-text slot="start" color="dark">R{{meal.price}}</ion-text>
+                  <ion-text slot="end" color="dark">{{meal.discription}}</ion-text>
                 </ion-toolbar>
               </ion-card-content>
-              
-              <ion-button size="small" shape="round" color="success" (click)="send()">Order</ion-button>
             </ion-card>
           </ion-item>
         </ion-col>
-        
       </ion-row>
-
-      <ion-text *ngIf="messArr.length !== 0" color="light"><h4>My Orders({{messArr.length}})</h4></ion-text>
+      <ion-button expand="full" shape="round" color="success" (click)="send()">Order</ion-button>
+      
       <hr/>
-      <ion-row *ngFor="let str of messArr">
+      <ion-text *ngIf="returnedOrder?.meals?.length !== 0"><h4>Order List</h4></ion-text>
+      
+      <ion-row *ngFor="let meal of returnedOrder?.meals">
         <ion-toolbar color="dark">
-          <ion-text slot="start" color="light">{{str.meal.name}}</ion-text>
+          <ion-text slot="start" color="light">{{meal.name}}</ion-text>
           <ion-text slot="end" color="primary">{{date | date:'shortDate'}} | {{date | date:'shortTime'}}</ion-text>
         </ion-toolbar>
-        <ion-col size="8" ><ion-text color="light">{{str.meal.discription}}</ion-text> </ion-col>
-        <ion-col size="4" ><ion-text color="light">R{{str.meal.price}}</ion-text> </ion-col>
-          
-          
+        <ion-col size="8" ><ion-text color="light">{{meal.discription}}</ion-text> </ion-col>
+        <ion-col size="4" ><ion-text color="light">R{{meal.price}}</ion-text> </ion-col>
       </ion-row>
     </ion-grid>
-    
-    
-    
-  </div>
 </ion-content>

@@ -1,15 +1,17 @@
+import { AppUser } from "./appUser";
 import { Meal } from "./meal";
 import { Status } from "./status";
 
 export class Order{
-    constructor(id:number, meal: Meal, status: Status){
-        this.Id = id;
-        this.Meal = meal;
+    constructor(email:string, csv: string, status: Status){
+        this.MealsCSV = csv;
         this.Status = status;
         this.Date = new Date;
+        this.Email = email;
     }
-    Id: any;
-    Meal: Meal;
+    Meals: Array<Meal>;
     Status: Status;
+    Email : string;
+    MealsCSV : string;
     Date: Date;
 }
